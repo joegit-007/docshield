@@ -29,7 +29,10 @@ def run_ela(image_path, quality=90):
 
 def analyze_text_consistency(image_path):
     """Check for font/layout inconsistencies using OCR"""
-    results = reader.readtext(image_path, detail=1)
+    results_ta = reader_ta.readtext(image_path, detail=1)
+    results_hi = reader_hi.readtext(image_path, detail=1)
+
+results = results_ta + results_hi
     
     if not results:
         return [], 0.0, "No text detected"
