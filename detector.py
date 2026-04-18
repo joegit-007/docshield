@@ -4,8 +4,15 @@ from PIL import Image
 import easyocr
 
 # OCR Readers
-reader_ta = easyocr.Reader(['en', 'ta'], gpu=False)
-reader_hi = easyocr.Reader(['en', 'hi'], gpu=False)
+import streamlit as st
+
+@st.cache_resource
+def load_readers():
+    reader_ta = easyocr.Reader(['en', 'ta'], gpu=False)
+    reader_hi = easyocr.Reader(['en', 'hi'], gpu=False)
+    return reader_ta, reader_hi
+
+reader_ta, reader_hi = load_readers()
 
 def run_ela(image_path, quality=90):
     original = Image.open(image_path).convert('RGB')
