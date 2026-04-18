@@ -6,7 +6,8 @@ import easyocr
 import re
 
 # Initialize OCR (supports English + regional scripts like Tamil, Hindi)
-reader = easyocr.Reader(['en', 'ta', 'hi'], gpu=False)
+reader_ta = easyocr.Reader(['en', 'ta'], gpu=False)
+reader_hi = easyocr.Reader(['en', 'hi'], gpu=False)
 
 def run_ela(image_path, quality=90):
     """Error Level Analysis - detects image editing artifacts"""
